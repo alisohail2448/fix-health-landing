@@ -8,9 +8,7 @@ function Footer() {
       <div className="footer-container">
         <div className="ft-info">
           <div className="ft-info-p1">
-            <p className="ft-title">
-              Fix Health <span className="ft-sign">+</span>
-            </p>
+          <img src="https://ik.imagekit.io/tcfp7i31d/logo_with_yp_black_urUeyjKwY.svg" width={200} alt="" />
             <p className="ft-description">
               Talk to online doctors and get medical advice, online
               prescriptions, refills and medical notes within minutes. On-demand

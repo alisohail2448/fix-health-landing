@@ -83,8 +83,8 @@
     text-align: center;
 }
 .hero-image1 {
-    width: 100%;
-    height: auto;
+    width: 530px;
+    /* height: auto; */
 }
 /* Scroll Btn */
 .scroll-up {

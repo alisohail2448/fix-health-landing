@@ -1,4 +1,4 @@
-import Doctor from "../assets/doctor-book-appointment.png";
+import Doctor from "../assets/doctor.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck, faCalendarCheck } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,7 @@ function BookAppointment(): JSX.Element {
   return (
     <div className="ba-section">
       <div className="ba-image-content">
-        <img src={Doctor} alt="Doctor Group" className="ba-image1" />
+        <img style={{ width: '600px' }} src={Doctor} alt="Doctor Group" className="ba-image1" />
       </div>
 
       <div className="ba-text-content">

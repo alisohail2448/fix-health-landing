@@ -1,6 +1,7 @@
 import { useState, useEffect, FormEvent, ChangeEvent } from "react";
 import "../styles/AppointmentForm.css";
 import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 
 interface Doctor {
   id: number;
@@ -26,25 +27,21 @@ function AppointmentForm(): JSX.Element {
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
   const [doctorsList, setDoctorsList] = useState<Doctor[]>([]);
 
+  const fetchDoctorsList = async (city: string): Promise<void> => {
+    try {
+      const response = await axios.get(`https://doctors-api.vercel.app/api/doctors?city=${city}`);
+      const doctorsData: Doctor[] = response.data;
+      console.log("Response-->", response)
+
+      setDoctorsList(doctorsData);
+    } catch (error) {
+      console.error('Error fetching doctors:', error);
+    }
+  };
+
   useEffect(() => {
     fetchDoctorsList(city);
   }, [city]);
-
-  const fetchDoctorsList = async (selectedCity: string): Promise<void> => {
-    const simulatedDoctorsData: Doctor[] = [
-      { id: 1, name: "Dr. Smith", expertise: "Orthopedic Surgeon", city: "New York" },
-      { id: 2, name: "Dr. Johnson", expertise: "Cardiologist", city: "New York" },
-      { id: 3, name: "Dr. Patel", expertise: "Dermatologist", city: "Los Angeles" },
-      { id: 4, name: "Dr. Sam", expertise: "Orthologist", city: "Los Angeles" },
-      { id: 5, name: "Dr. AB Patel", expertise: "Cardiologist", city: "Los Angeles" },
-      { id: 6, name: "Dr.Saurabh", expertise: "Neurologist", city: "Los Angeles" },
-      { id: 7, name: "Dr. John Doe", expertise: "Nephrologist", city: "Los Angeles" },
-    ];
-
-    const filteredDoctors: Doctor[] = simulatedDoctorsData.filter((doctor) => doctor.city === selectedCity);
-
-    setDoctorsList(filteredDoctors);
-  };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
@@ -156,7 +153,7 @@ function AppointmentForm(): JSX.Element {
               onChange={(e: ChangeEvent<HTMLInputElement>) => setCity(e.target.value)}
               required
             />
-             <p style={{ fontSize: '14px' }} >Type City for Api Work: Los Angeles or New York</p>
+             <p style={{ fontSize: '14px' }} >Type City for Api Work: Pune or Mumbai</p>
             {formErrors.city && <p className="error-message">{formErrors.city}</p>}
           </label>
 

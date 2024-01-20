@@ -16,11 +16,7 @@ function Navbar(): JSX.Element {
 
   return (
     <div className="navbar-section">
-      <h1 className="navbar-title">
-        <Link to="/">
-          Fix Health <span className="navbar-sign">+</span>
-        </Link>
-      </h1>
+      <img src="https://ik.imagekit.io/tcfp7i31d/logo_with_yp_black_urUeyjKwY.svg" width={140} alt="" />
 
       {/* Desktop */}
       <ul className="navbar-items">

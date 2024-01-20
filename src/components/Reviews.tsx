@@ -3,7 +3,7 @@ import "../styles/Reviews.css";
 import { customerReviews } from "../scripts/reveiew";
 
 function Reviews() {
-  let rMessage, rName, rLocation;
+  let rMessage, rName, rLocation, rImage;
   const reviewsLength = customerReviews.length - 1;
   const [review, setReview] = useState(0);
 
@@ -25,6 +25,7 @@ function Reviews() {
     rName = reviewMessage.name;
     rLocation = reviewMessage.location;
     rMessage = reviewMessage.message;
+    rImage = reviewMessage.image;
   };
 
   // list review on visit
@@ -40,6 +41,19 @@ function Reviews() {
         <p className="rw-text-desc">Don't believe us, Check clients word</p>
 
         <p className="rw-text-format">
+          <div style={{ width: "150px", height: "150px" }}>
+            <img
+              style={{
+                width: "150px",
+                height: "150px",
+                objectFit: "cover",
+                borderRadius: "100%",
+                marginRight: '10px'
+              }}
+              src={rImage}
+              alt=""
+            />
+          </div>
           <span className="rw-text-quote1">''</span>
           <span className="rw-review">{rMessage}</span>
           <span className="rw-text-quote2">''</span>
