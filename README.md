@@ -1,30 +1,37 @@
-# React + TypeScript + Vite
+# Health Plus App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+Health Plus is a minimalistic healthcare application designed to provide users with a seamless experience in booking medical consultations. The app features an attractive hero image, a user-friendly consultation booking form, and testimonials from satisfied users.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+1. **An Attractive Hero Image**
+   - The app welcomes users with a visually appealing hero image that sets a positive tone for their healthcare journey.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+2. **Consultation Booking Form**
+   - The consultation booking form follows a step-by-step process:
+     1. **Name + Phone number**
+     2. **Age + City + Company**
+     3. **Chief complaints**
+     4. **Previous experience with physiotherapy**
+     5. **Display best available doctors filtered for the user's city**
 
-- Configure the top-level `parserOptions` property like this:
+3. **Testimonials**
+   - Users can read testimonials from individuals who have benefited from Health Plus. This helps build trust and confidence in the healthcare services offered.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
+## API for Fetching Available Doctors
+
+The application relies on a simple API (`doctors.json`) to retrieve information about available doctors. The API returns details such as the doctor's name, expertise, and city.
+
+### Doctors JSON Format
+
+```json
+{
+  "doctors": [
+    { "id": 1, "name": "Dr. Smith", "expertise": "Orthopedic Surgeon", "city": "New York" },
+    { "id": 2, "name": "Dr. Johnson", "expertise": "Cardiologist", "city": "New York" },
+    { "id": 3, "name": "Dr. Patel", "expertise": "Dermatologist", "city": "Los Angeles" }
+    // Add more doctors as needed
+  ]
 }
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
