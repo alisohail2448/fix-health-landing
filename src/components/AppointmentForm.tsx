@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FormEvent, ChangeEvent } from "react";
+import { useState, useEffect, FormEvent, ChangeEvent } from "react";
 import "../styles/AppointmentForm.css";
 import { ToastContainer, toast } from "react-toastify";
 

@@ -3,11 +3,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function SubscribeNewsletter() {
-  const [inputEmail, setInputEmail] = useState("");
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
-  const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+  const [inputEmail, setInputEmail] = useState<string>("");
+  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false);
+  const emailRegex: RegExp = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
-  const handleEmailInput = (event) => {
+  const handleEmailInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputEmail(event.target.value);
   };
 
