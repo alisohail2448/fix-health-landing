@@ -81,7 +81,6 @@ function Navbar(): JSX.Element {
         </ul>
       </div>
 
-      {/* Hamburger Icon */}
       <div className="mobile-nav">
         <FontAwesomeIcon icon={faBars} onClick={openNav} className="hamb-icon" />
       </div>

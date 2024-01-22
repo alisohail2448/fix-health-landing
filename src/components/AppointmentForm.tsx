@@ -27,7 +27,16 @@ function AppointmentForm(): JSX.Element {
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
   const [doctorsList, setDoctorsList] = useState<Doctor[]>([]);
 
+  const [selectedDoctor, setSelectedDoctor] = useState<number | null>(null);
+
+
+  const handleDoctorChange = (e: ChangeEvent<HTMLSelectElement>): void => {
+    const selectedDoctorId = parseInt(e.target.value, 10);
+    setSelectedDoctor(selectedDoctorId);
+  };
+
   const fetchDoctorsList = async (city: string): Promise<void> => {
+    if(!city) return;
     try {
       const response = await axios.get(`https://doctors-api.vercel.app/api/doctors?city=${city}`);
       const doctorsData: Doctor[] = response.data;
@@ -45,8 +54,6 @@ function AppointmentForm(): JSX.Element {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-
-    // Validate form inputs
     const errors: Record<string, string> = {};
 
     if (!patientName.trim()) {
@@ -84,7 +91,6 @@ function AppointmentForm(): JSX.Element {
       return;
     }
 
-    // Reset form fields and errors after successful submission
     setPatientName("");
     setPatientNumber("");
     setChiefComplaints("");
@@ -100,6 +106,9 @@ function AppointmentForm(): JSX.Element {
       onClose: () => setIsSubmitted(false),
     });
   };
+
+
+
 
   return (
     <div className="appointment-form-section">
@@ -194,16 +203,20 @@ function AppointmentForm(): JSX.Element {
             </label>
           )}
 
-          <div className="doctors-list">
-            {city ? <h3>Available Doctors in {city}</h3> : ''}
-            <ul style={{ display: 'flex', flexDirection: 'column', gap: '5px', textDecoration: 'none', listStyle: 'none' }}>
-              {doctorsList.map((doctor) => (
-                <li key={doctor.id}>
-                  {doctor.name} - {doctor.expertise}
-                </li>
-              ))}
-            </ul>
-          </div>
+       {city ? (
+         <label>
+         Select a Doctor:
+         <select value={selectedDoctor || ''} onChange={handleDoctorChange} required>
+           <option value="" disabled>Select a doctor</option>
+           {doctorsList.map((doctor) => (
+             <option key={doctor.id} value={doctor.id}>
+               {doctor.name} - {doctor.expertise}
+             </option>
+           ))}
+         </select>
+         {formErrors.selectedDoctor && <p className="error-message">{formErrors.selectedDoctor}</p>}
+       </label>
+       ) : <></>}
 
           <br />
           <button type="submit" className="text-appointment-btn">
